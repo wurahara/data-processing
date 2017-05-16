@@ -1,22 +1,23 @@
-% 插值函数
-line = size(mat, 1);
 
-acc_x = mat(:,4);
-ox_gamma = mat(:,13);
-PIN = mat(1, 2);
+% 插值函数
+line = size(testmat2, 1);
+
+acc_x = testmat2(:,4);
+ox_gamma = testmat2(:,13);
+PIN = testmat2(1, 2);
 
 mat_1 = [];
 mat_2 = [];
 
 for i = 1 : line
     if( isnan(acc_x(i)) ~= true)
-        mat_1 = [mat_1; mat(i , 1:12)];
+        mat_1 = [mat_1; testmat2(i , 1:12)];
     end
 end
 
 for i = 1 : line
     if( isnan(ox_gamma(i)) ~= true)
-        mat_2 = [mat_2; mat(i, 1:3) mat(i , 13:15)];
+        mat_2 = [mat_2; testmat2(i, 1:3) testmat2(i , 13:15)];
     end
 end
 time_1 = mat_1(:,3);
@@ -80,6 +81,7 @@ mat_interp_1 = [time_manip_1' PIN_1...
 
 mat_interp_2 = [time_manip_2' PIN_2 ...
    ox_gamma_interp' oy_beta_interp' oz_alpha_interp'];
+fil = filter(testFilter, 1, acc_x_interp);
 
 % subplot(3,1,1);
 % plot(time_1, acc_x, 'r.', time_manip_1, acc_x_interp);
@@ -87,6 +89,12 @@ mat_interp_2 = [time_manip_2' PIN_2 ...
 % plot(time_1, acc_y, 'g.', time_manip_1, acc_y_interp);
 % subplot(3,1,3);
 % plot(time_1, acc_z, 'b.', time_manip_1, acc_z_interp);
+
+subplot(2,1,1);
+plot(time_1, acc_x, 'r.', time_manip_1, acc_x_interp);
+subplot(2,1,2);
+plot(time_1, acc_x, 'g.', time_manip_1, fil);
+
 
 % subplot(3,1,1);
 % plot(time_1, gacc_x, 'r.', time_manip_1, gacc_x_interp);
