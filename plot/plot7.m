@@ -12,4 +12,5 @@ end
 
 b.FaceColor = [0.6 0.6 0.6];
 ylabel('°´¼üÔ¤²â¸ÅÂÊ/%');
+xlabel('°´¼ü¾àÀë');
 set(gca,'xticklabel',{'0','1','2','3','4'});
