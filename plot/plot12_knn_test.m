@@ -11,13 +11,13 @@ d = [-2.2 -3.8 2.9  -3.5];
 plot(a,b,'+','linewidth', 1.5);
 plot(c,d,'b^','linewidth', 1.5);
 
-alpha=0:pi/20:2*pi;%½Ç¶È[0,2*pi]
+alpha=0:pi/1000:2*pi;%½Ç¶È[0,2*pi]
 R=3.1;%°ë¾¶
 x=R*cos(alpha);
 y=R*sin(alpha);
 plot(x,y,'linewidth', 1.5)
 axis equal
-alpha=0:pi/20:2*pi;%½Ç¶È[0,2*pi]
+alpha=0:pi/1000:2*pi;%½Ç¶È[0,2*pi]
 R=1.78;%°ë¾¶
 x=R*cos(alpha);
 y=R*sin(alpha);
@@ -39,13 +39,13 @@ d = [-2.2 -3.8 2.9  -3.5];
 plot(a,b,'+','linewidth', 1.5);
 plot(c,d,'b^','linewidth', 1.5);
 
-alpha=0:pi/20:2*pi;%½Ç¶È[0,2*pi]
+alpha=0:pi/1000:2*pi;%½Ç¶È[0,2*pi]
 R=3.5;%°ë¾¶
 x=R*cos(alpha);
 y=R*sin(alpha);
 plot(x,y,'linewidth', 1.5)
 axis equal
-alpha=0:pi/20:2*pi;%½Ç¶È[0,2*pi]
+alpha=0:pi/1000:2*pi;%½Ç¶È[0,2*pi]
 R=2.15;%°ë¾¶
 x=R*cos(alpha);
 y=R*sin(alpha);

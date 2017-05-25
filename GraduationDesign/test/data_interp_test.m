@@ -81,20 +81,63 @@ mat_interp_1 = [time_manip_1' PIN_1...
 
 mat_interp_2 = [time_manip_2' PIN_2 ...
    ox_gamma_interp' oy_beta_interp' oz_alpha_interp'];
-fil = filter(testFilter, 1, acc_x_interp);
 
-% subplot(3,1,1);
-% plot(time_1, acc_x, 'r.', time_manip_1, acc_x_interp);
-% subplot(3,1,2);
-% plot(time_1, acc_y, 'g.', time_manip_1, acc_y_interp);
-% subplot(3,1,3);
-% plot(time_1, acc_z, 'b.', time_manip_1, acc_z_interp);
 
-subplot(2,1,1);
+pd = time_1_left :inter_1*1000: time_1_right + 0.000000900;
+
+
+figure(1);
+subplot(3,1,1);
+plot(time_1, acc_x, 'r.');
+set(gca,'XTick', pd); 
+set(gca,'XTickLabel',{'0','75','150','225','300','375','450','525','600','675','750','825'});
+set(gca,'fontsize',10);
+xlabel('Time/ms');
+ylabel('acc\_x/(m/s^2)');
+%axis([time_1_left time_1_right -1 1]);
+
+subplot(3,1,2);
+plot(time_1, acc_y, 'g.')
+set(gca,'XTick', pd); 
+set(gca,'XTickLabel',{'0','75','150','225','300','375','450','525','600','675','750','825'});
+xlabel('Time/ms');
+ylabel('acc\_y/(m/s^2)');
+%axis([time_1_left time_1_right -1 1]);
+
+subplot(3,1,3);
+plot(time_1, acc_z, 'b.')
+set(gca,'XTick', pd); 
+set(gca,'XTickLabel',{'0','75','150','225','300','375','450','525','600','675','750','825'});
+xlabel('Time/ms');
+ylabel('acc\_z/(m/s^2)');
+ylim([-0.5 0.5]);
+
+
+figure(2);
+subplot(3,1,1);
 plot(time_1, acc_x, 'r.', time_manip_1, acc_x_interp);
-subplot(2,1,2);
-plot(time_1, acc_x, 'g.', time_manip_1, fil);
+set(gca,'XTick', pd); 
+set(gca,'XTickLabel',{'0','75','150','225','300','375','450','525','600','675','750','825'});
+xlabel('Time/ms');
+ylabel('acc\_x/(m/s^2)');
+%axis([time_1_left time_1_right -1 1]);
 
+
+subplot(3,1,2);
+plot(time_1, acc_y, 'g.', time_manip_1, acc_y_interp)
+set(gca,'XTick', pd); 
+set(gca,'XTickLabel',{'0','75','150','225','300','375','450','525','600','675','750','825'});
+xlabel('Time/ms');
+ylabel('acc\_y/(m/s^2)');
+%axis([time_1_left time_1_right -1 1]);
+
+subplot(3,1,3);
+plot(time_1, acc_z, 'b.', time_manip_1, acc_z_interp)
+set(gca,'XTick', pd); 
+set(gca,'XTickLabel',{'0','75','150','225','300','375','450','525','600','675','750','825'});
+xlabel('Time/ms');
+ylabel('acc\_z/(m/s^2)');
+ylim([-0.5 0.5]);
 
 % subplot(3,1,1);
 % plot(time_1, gacc_x, 'r.', time_manip_1, gacc_x_interp);
