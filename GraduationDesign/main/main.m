@@ -4,7 +4,7 @@
 clear;close all;clc;
 
 % 打开csv文件
-fid = fopen('sensor1.csv');
+fid = fopen('output.csv');
 
 % 读取表头 数据返回为cell类型 调用格式title{1}
 title = textscan(fid, '%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s',1,'delimiter', ',');
@@ -39,5 +39,5 @@ cell_interped_data = data_interp_batch(cell_raw_data);
 mat_featured_data = data_feature_extraction_batch(cell_interped_data);
 
 %% 制作CSV输出表
-csvwrite('featuredData1.csv', mat_featured_data);
+csvwrite('featuredData10.csv', mat_featured_data);
 % title and head needed?
