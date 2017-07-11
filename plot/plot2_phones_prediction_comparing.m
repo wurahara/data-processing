@@ -14,6 +14,6 @@ end
 
 b(1).FaceColor = [0.6 0.6 0.6];
 b(2).FaceColor = [0.9 0.9 0.9];
-ylabel('Ô¤²â×¼È·ÂÊ/%');
+ylabel('Prediction Accuracy/%');
 legend('iPhone 6s','MI 3');
 set(gca,'xticklabel',{'SMO','IBk','J48','LMT','RandomForest'});
