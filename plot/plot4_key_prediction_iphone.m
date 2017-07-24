@@ -17,6 +17,6 @@ text(x(10)-0.36,y(10)+2,'78.0');
 
 
 b.FaceColor = [0.6 0.6 0.6];
-ylabel('预测准确率/%');
-xlabel('按键');
+ylabel('Prediction Accuracy/%/%');
+xlabel('Key');
 set(gca,'xticklabel',{'1','2','3','4','5','6','7','8','9','0'});
