@@ -15,6 +15,6 @@ end
 
 b(1).FaceColor = [0.6 0.6 0.6];
 b(2).FaceColor = [0.9 0.9 0.9];
-ylabel('时间开销/s');
+ylabel('Time Consumption/s');
 legend('iPhone 6s','MI 3');
-set(gca,'xticklabel',{'SMO','IBk','J48','LMT','RandomForest'});
+set(gca,'xticklabel',{'SMO','k-NN','C4.5','LMT','RandomForest'});
