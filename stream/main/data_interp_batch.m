@@ -1,5 +1,7 @@
 function [ cell_interped_data ] = data_interp_batch( cell_raw_data )
-% 批量插值函数，循环调用函数data_interp进行插值
+% 批量插值函数
+% 循环调用函数data_interp进行插值
+
 cell_new_data = cell_raw_data;
 
 % 删除空元胞

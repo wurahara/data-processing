@@ -13,7 +13,7 @@ function [ feature_row ] = feature_extraction( timestamp, vector_col )
 % max_row 最大值所在行
 [Max,~] = max(vector_col);
 
-%% Min 区间内最小者
+%% Min 区间内最小值
 % min_num 最小值
 % min_row 最小值所在行
 [Min,~] = min(vector_col);

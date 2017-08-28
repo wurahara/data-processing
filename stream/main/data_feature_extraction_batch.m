@@ -12,6 +12,7 @@ for i = 1 : line
     line2 = size(mat2, 1);
     
     pin_this = mat1(1, 2);
+    
     % 计算欧几里得距离
     time1 = mat1(:, 1);
     time2 = mat2(:, 1);
@@ -26,27 +27,32 @@ for i = 1 : line
     euc_rot = [];
     euc_ori = [];
     
+    % 计算第一组数据的欧氏距离
     for j = 1 : line1
         euc_acc = [euc_acc; norm(acc(j,:), 2)];
         euc_gacc = [euc_gacc; norm(gacc(j,:),2)];
         euc_rot = [euc_rot; norm(rot(j,:),2)];
     end
     
+    % 计算第二组数据的欧氏距离
     for k = 1 : line2
         euc_ori = [euc_ori; norm(ori(k,:),2)];
     end
     
+    % 数据装配
     acc = [acc euc_acc];
     gacc = [gacc euc_gacc];
     rot = [rot euc_rot];
     ori = [ori euc_ori];
     
     full_data = [acc gacc rot];
+    
     col1 = size(full_data, 2);
     col2 = size(ori, 2);
     
     
     % 特征提取
+    % 调用feature_extraction.m
     feature1 = [];
     feature2 = [];
     for itr1 = 1 : col1
@@ -58,7 +64,7 @@ for i = 1 : line
     end
     feature = [feature1 feature2 pin_this];
   
-    % 数据装配
+    % 特征向量化
     mat_featured_data = [mat_featured_data; feature];
 end
 
