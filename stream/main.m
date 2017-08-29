@@ -32,7 +32,7 @@ mat = cell2mat(data(5 : 16));
 sampleID = cell2mat(data(2));
 pin = cell2mat(data(3));
 
-% 装配数据
+% 装配数据l
 mat = [sampleID pin unix_time mat];
 
 % inner sort function

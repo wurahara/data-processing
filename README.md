@@ -3,12 +3,16 @@
 用于数据预处理和特征提取的相关程序。
 
 ```Bash
-├── former # 废弃的文件
-├── stream # 流处理文件
-│   ├── main # 主文件夹
-│   ├── singleTraining 
-│   └── test # 用于单元测试的函数文件
+├── stream    # 流处理文件
+│   ├── main.m
+│   ├── data_distribution_batch.m
+│   └── ...
+├── unit      # 单元测试文件
+│   ├── unit_interp.m
+│   ├── unit_main.m
+│   └── ...
 ├── .gitignore
+├── LICENSE
 └── README.md
 ```
 
