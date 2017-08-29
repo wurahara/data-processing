@@ -5,8 +5,18 @@
 clear;close all;clc;
 
 % 打开csv文件
-fid = fopen('output.csv');
+fid = fopen('sensor1.csv');
 
+%%
+% 
+% <<FILENAME.PNG>>
+% 
+% <<FILENAME.PNG>>
+% 
+% <<FILENAME.PNG>>
+% 
+% 
+% 
 % 读取表头 数据返回为cell类型 调用格式title{1}
 title = textscan(fid, '%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s',1,'delimiter', ',');
 
@@ -16,7 +26,7 @@ fclose(fid);
 
 %% 修改时间格式，字符串->datetime->时间数字
 
-%读出字符串中时间字段
+%读出字符串中时间戳字段
 time = cell2mat(data{1,4});
 
 %转化为matlab时间格式
@@ -47,5 +57,5 @@ cell_interped_data = data_interp_batch(cell_raw_data);
 mat_featured_data = data_feature_extraction_batch(cell_interped_data);
 
 %% 制作CSV输出表
-csvwrite('featuredData10.csv', mat_featured_data);
+csvwrite('featuredData17082901.csv', mat_featured_data);
 % title and head needed?
