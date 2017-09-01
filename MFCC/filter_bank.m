@@ -1,5 +1,8 @@
-function [x,mc,mn,mx]=mel_filter_bank(p,n,fs,fl,fh,w)
+function [x, mc, mn, mx] = filter_bank(p, n, fs, fl, fh, w)
+%FILTER_BANK determine matrix for a mel/erb/bark-spaced filterbank [X,MN,MX]=(P,N,FS,FL,FH,W)
+% Note "FFT bin_0" assumes DC = bin 0 whereas "FFT bin_1" means DC = bin 1
 
+%% process the parameters
 if nargin < 6
     w='tz';                         % default options
 end
@@ -10,18 +13,21 @@ if nargin < 4 || isempty(fl)
     fl=0;                           % min freq is DC
 end
 
-sfact=2-any(w=='s');                % 1 if single sided else 2
+sfact = 2 - any(w=='s');            % 1 if single sided else 2
 wr=' ';                             % default warping is mel
+
 for i=1:length(w)
     if any(w(i)=='lebf')
         wr=w(i);
     end
 end
+
 if any(w=='h') || any(w=='H')
     mflh=[fl fh];
 else
     mflh=[fl fh]*fs;
 end
+
 if ~any(w=='H')
     switch wr
         case 'f'                    % no transformation
@@ -39,28 +45,27 @@ if ~any(w=='H')
     end
 end
 
-melrng=mflh*(-1:2:1)';              % mel range
-fn2=floor(n/2);                     % bin index of highest positive frequency (Nyquist if n is even)
+melrng = mflh * (-1: 2: 1)';        % mel range
+fn2 = floor(n/2);                   % bin index of highest positive frequency (Nyquist if n is even)
+
 if isempty(p)
-    p=ceil(4.6*log10(fs));          % default number of filters
+    p = ceil(4.6 * log10(fs));      % default number of filters
 end
 
 if any(w=='c')                      % c option: specify fiter centres not edges
-    if p<1
-        p=round(melrng/(p*1000))+1;
+    if p < 1
+        p = round(melrng / (p * 1000)) + 1;
     end
-    melinc=melrng/(p-1);
-    mflh=mflh+(-1:2:1)*melinc;
+    melinc = melrng / (p - 1);
+    mflh = mflh + (-1: 2: 1) * melinc;
 else
-    if p<1
-        p=round(melrng/(p*1000))-1;
+    if p < 1
+        p = round(melrng / (p * 1000)) - 1;
     end
-    melinc=melrng/(p+1);
+    melinc = melrng / (p + 1);
 end
 
-%
-% Calculate the FFT bins corresponding to [filter#1-low filter#1-mid filter#p-mid filter#p-high]
-%
+%% Calculate the FFT bins corresponding to [filter#1-low filter#1-mid filter#p-mid filter#p-high]
 
 switch wr
     case 'f'
@@ -79,9 +84,7 @@ mc=mflh(1)+(1:p)*melinc;            % mel centre frequencies
 b1=floor(blim(1))+1;                % lowest FFT bin_0 required might be negative)
 b4=min(fn2,ceil(blim(4))-1);        % highest FFT bin_0 required
 
-%
-% now map all the useful FFT bins_0 to filter1 centres
-%
+%% now map all the useful FFT bins_0 to filter1 centres
 
 switch wr
     case 'f'
@@ -95,9 +98,8 @@ switch wr
     otherwise
         pf=(frq2mel((b1:b4)*fs/n)-mflh(1))/melinc;
 end
-%
-%  remove any incorrect entries in pf due to rounding errors
-%
+
+%%  remove any incorrect entries in pf due to rounding errors
 
 if pf(1)<0
     pf(1)=[];
@@ -147,9 +149,9 @@ if sfact==2                         % double all except the DC and Nyquist (if a
     msk=(c+mn>2) & (c+mn<n-fn2+2);  % there is no Nyquist term if n is odd
     v(msk)=2*v(msk);
 end
-%
-% sort out the output argument options
-%
+
+%% sort out the output argument options
+
 if nargout > 2
     x=sparse(r,c,v);
     if nargout == 3                 % if exactly three output arguments, then
@@ -163,9 +165,9 @@ if any(w=='u')
     sx=sum(x,2);
     x=x./repmat(sx+(sx==0),1,size(x,2));
 end
-%
-% plot results if no output arguments or g option given
-%
+
+%% plot results if no output arguments or g option given
+
 if ~nargout || any(w=='g')          % plot idealized filters
     ng=201;                         % 201 points
     me=mflh(1)+(0:p+1)'*melinc;
