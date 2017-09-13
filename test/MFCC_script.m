@@ -15,13 +15,14 @@ acc_x = sig(:,3);
 
 bank = filter_bank_mel(20, 1000, fs, 0, 0.5);
 
-bank = full(bank);                          % full() convert sparse matrix to full matrix  
+bank = full(bank);                          % full() convert sparse matrix to full matrix
 bank = bank / max(bank(:));                 % bank normalize
 
 %% DCT Coefficient
 for k=1:12
+    
     n=0:19;
-    DCT_coef(k, :)=cos( (2*n + 1) * k * pi / (2*24) );
+    DCT_coef(k, :)=cos( (2*n + 1) * k * pi / (2*20) );
 end
 
 w = 1 + 6 * sin( pi*(1 : 12) ./ 12);        %归一化倒谱提升窗口
