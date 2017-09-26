@@ -1,4 +1,4 @@
-function [ feature_row, Mel_Coef] = feature_extraction( timestamp, vector_col )
+function [ feature_row] = feature_extraction( timestamp, vector_col )
 
 % feature_extraction 特征提取函数
 % timestamp: 输入的时间列向量

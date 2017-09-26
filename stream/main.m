@@ -45,7 +45,13 @@ cell_interped_data = data_interp_batch(cell_raw_data);
 
 %% 进行特征提取
 mat_featured_data = data_feature_extraction_batch(cell_interped_data);
+mat_featured_data_mfcc = data_feature_extraction_mfcc_batch(cell_interped_data);
 
 %% 制作CSV输出表
-csvwrite('featuredData17082901.csv', mat_featured_data);
+local_time = datestr(now, 'yymmddHHMMSS');
+name_1 = strcat('feature_set_free', local_time, '.csv');
+name_2 = strcat('feature_set_mfcc', local_time, '.csv');
+
+csvwrite(name_1, mat_featured_data);
+csvwrite(name_2, mat_featured_data_mfcc);
 % title and head needed?
