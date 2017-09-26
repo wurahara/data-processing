@@ -1,4 +1,4 @@
-function [ feature_row ] = feature_extraction( timestamp, vector_col )
+function [ feature_row, Mel_Coef] = feature_extraction( timestamp, vector_col )
 
 % feature_extraction 特征提取函数
 % timestamp: 输入的时间列向量
@@ -47,6 +47,10 @@ Kurtosis = kurtosis(vector_col, 1);
 
 %% TTP 到达波峰平均时间 TTC 到达波谷平均时间
 [ TTP, TTC ] = TTP_TTC( timestamp, vector_col, IndMax, IndMin );
+
+%% MFCC 梅尔频率倒谱函数
+Mel_freq = mfcc(timestamp, vector_col, 20, 20);
+Mel_Coef = Mel_freq';
 
 %% 作图试一试
 % plot(time_max, acc_max,'ro',time_min, acc_min,'go',time, accx);
