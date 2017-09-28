@@ -34,7 +34,7 @@ end
 fp = floor(pf);                                     % FFT bin_0 i contributes to filters_1 fp(1+i-b1)+[0 1]
 pm = pf - fp;                                       % multiplier for upper filter
 k2 = find(fp > 0, 1);                               % FFT bin_1 k2+b1 is the first to contribute to both upper and lower filters
-k3 = find(fp < bank_num, 1, 'last');                         % FFT bin_1 k3+b1 is the last to contribute to both upper and lower filters
+k3 = find(fp < bank_num, 1, 'last');                % FFT bin_1 k3+b1 is the last to contribute to both upper and lower filters
 k4 = numel(fp);                                     % FFT bin_1 k4+b1 is the last to contribute to any filters
 if isempty(k2)
     k2 = k4 + 1;
@@ -79,7 +79,7 @@ if ~nargout          % plot idealized filters
     me=mflh(1)+(0:bank_num+1)'*melinc;
     
     fe=mel_to_freq(me);         % defining frequencies
-    xg=mel_to_freq(repmat(linspace(0,1,ng),bank_num,1).*repmat(me(3:end)-me(1:end-2),1,ng)+repmat(me(1:end-2),1,ng));
+    xg=mel_to_freq(repmat(linspace(0,1,ng),bank_num,1).*repmat(me(3:end)-me(1:end-  2),1,ng)+repmat(me(1:end-2),1,ng));
     
     v=1-abs(linspace(-1,1,ng));
    
