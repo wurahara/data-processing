@@ -22,6 +22,6 @@ Program of data pre-processing and feature extraction in WebLogger.
 └── README.md
 ```
 
-# License
+## License
 
  [GPL-3.0 © wurahara](https://github.com/wurahara/weblogger-data-processing/blob/master/LICENSE)
