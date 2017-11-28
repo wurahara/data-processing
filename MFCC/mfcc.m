@@ -15,7 +15,7 @@ bank = full(bank);                                      % full() convert sparse 
 bank = bank / max(bank(:));                             % bank normalize
 
 %% DCT Coefficient
-n = 0 : 19;
+n = 0 : bank_num - 1;
 for k=1 : mfcc_num
     DCT_coef(k, :) = cos((2*n + 1) * k * pi / (2 * bank_num));
 end

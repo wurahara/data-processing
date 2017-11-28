@@ -6,7 +6,7 @@ function [ mel_coef ] = feature_extraction_mfcc( timestamp, vector_col )
 % mel_coef: 输出的MFCC，即梅尔频率倒谱函数
 
 %% MFCC 梅尔频率倒谱函数
-mel_freq = mfcc(timestamp, vector_col, 20, 1);
+mel_freq = mfcc(timestamp, vector_col, 20, 3);
 mel_coef = mel_freq';
 
 end
