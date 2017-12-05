@@ -50,9 +50,9 @@ mat_featured_data_all = [mat_featured_data(:, 1:192), mat_featured_data_mfcc];
 
 %% 制作CSV输出表
 local_time = datestr(now, 'yymmddHHMMSS');
-name_1 = strcat('1 feature_set_free', local_time, '.csv');
-name_2 = strcat('1 feature_set_mfcc', local_time, '.csv');
-name_3 = strcat('1 feature_set_all', local_time, '.csv');
+name_1 = strcat('10 feature_set_free', local_time, '.csv');
+name_2 = strcat('10 feature_set_mfcc', local_time, '.csv');
+name_3 = strcat('10 feature_set_all', local_time, '.csv');
 
 csvwrite(name_1, mat_featured_data);
 csvwrite(name_2, mat_featured_data_mfcc);
