@@ -2,7 +2,7 @@ function [ mfcc_coef ] = mfcc( time_vector, signal, bank_num, mfcc_num )
 %MFCC Calculate the MFCC coefficient of input signal
 
 length = size(signal, 1);
-
+ 
 total_time = time_vector(length) - time_vector(1);
 total_time = total_time * 24 * 60 * 60;
 
