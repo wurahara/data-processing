@@ -5,7 +5,7 @@
 clear;close all;clc;
 
 % 打开csv文件
-fid = fopen('sensor1.csv');
+fid = fopen('sensor5.csv');
 
 % 读取表头 数据返回为cell类型 调用格式title{1}
 title = textscan(fid, '%s %s %s %s %s %s %s %s %s %s %s %s %s %s %s %s',1,'delimiter', ',');
@@ -47,6 +47,18 @@ cell_interped_data = data_interp_batch(cell_raw_data);
 mat_featured_data = data_feature_extraction_batch(cell_interped_data);
 mat_featured_data_mfcc = data_feature_extraction_mfcc_batch(cell_interped_data);
 mat_featured_data_all = [mat_featured_data(:, 1:192), mat_featured_data_mfcc];
+
+%% NN准备
+% time-domain
+mat_input = mat_featured_data(:, 1:192);
+mat_target = mat_featured_data(:, 193);
+mat_target = spare_target(mat_target);
+
+% time-domain & frequency-domain
+size_all = size(mat_featured_data_all, 2);
+mat_input_all = mat_featured_data_all(:, 1 : size_all-1);
+mat_target_all = mat_featured_data_all(:, size_all);
+mat_target_all = spare_target(mat_target_all);
 
 %% 制作CSV输出表
 local_time = datestr(now, 'yymmddHHMMSS');
